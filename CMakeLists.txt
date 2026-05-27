@@ -28,6 +28,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         currency.h
         currency.cpp
         portfoliowidget.h portfoliowidget.cpp
+        transactiondialog.h transactiondialog.cpp transactiondialog.ui
 
 
     )

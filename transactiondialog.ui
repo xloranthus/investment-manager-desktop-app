@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TransactionDialog</class>
+ <widget class="QDialog" name="TransactionDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>323</width>
+    <height>332</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>121</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="buySellButtons">
+    <item>
+     <widget class="QRadioButton" name="buyButton">
+      <property name="text">
+       <string>Buy</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QRadioButton" name="sellButton">
+      <property name="text">
+       <string>Sell</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QCheckBox" name="rebuyButton">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>70</y>
+     <width>291</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Re-buy a security already in the portfolio</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="formLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>105</y>
+     <width>212</width>
+     <height>166</height>
+    </rect>
+   </property>
+   <layout class="QFormLayout" name="formLayout">
+    <item row="0" column="0">
+     <widget class="QLabel" name="isinLabel">
+      <property name="text">
+       <string>ISIN</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <layout class="QVBoxLayout" name="isinLayout">
+      <item>
+       <widget class="QComboBox" name="isinSelector">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="locale">
+         <locale language="English" country="UnitedKingdom"/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="isinField"/>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="nameLabel">
+      <property name="text">
+       <string>Name</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="nameField"/>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="qtyLabel">
+      <property name="text">
+       <string>Qty</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QSpinBox" name="qtyField"/>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="priceLabel">
+      <property name="text">
+       <string>Price</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <layout class="QHBoxLayout" name="priceCurrencyLayout">
+      <item>
+       <widget class="QDoubleSpinBox" name="priceField">
+        <property name="locale">
+         <locale language="English" country="UnitedKingdom"/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="currencySelector"/>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QDialogButtonBox" name="dialogButtons">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>290</y>
+     <width>152</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
+   </property>
+   <property name="centerButtons">
+    <bool>false</bool>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
