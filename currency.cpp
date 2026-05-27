@@ -40,7 +40,7 @@ void CurrencyConverter::calcExchangeRateMatrix(const vector<CurrencyPair> &curre
     }
 }
 
-double CurrencyConverter::convert(double value, Currency fromCurrency, Currency toCurrency){
+double CurrencyConverter::convert(double value, Currency fromCurrency, Currency toCurrency) const{
     return value * m_exchangeRateMatrix[fromCurrency][toCurrency];
 }
 

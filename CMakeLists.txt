@@ -27,6 +27,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         security.h security.cpp
         currency.h
         currency.cpp
+        portfoliowidget.h portfoliowidget.cpp
 
 
     )

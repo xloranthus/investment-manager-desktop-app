@@ -10,7 +10,8 @@ using std::vector;
 int main(int argc, char *argv[])
 {
 
-    // teszteles
+    /*
+    // segedosztalyok tesztelese
     vector<CurrencyPair> currencyPairs;
     currencyPairs.emplace_back("EUR/HUF", 300);
     currencyPairs.emplace_back("USD/HUF", 200);
@@ -44,8 +45,7 @@ int main(int argc, char *argv[])
     qDebug() << converter.convert(1, Currency::HUF, Currency::EUR);
     qDebug() << converter.convert(1, Currency::HUF, Currency::USD);
     qDebug() << converter.convert(1, Currency::HUF, Currency::HUF);
-
-
+    */
 
     QApplication a(argc, argv);
     MainWindow w;

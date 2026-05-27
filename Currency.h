@@ -8,7 +8,7 @@ enum Currency{
     HUF = 0,
     EUR,
     USD,
-    NUMBER_OF_CURRENCIES
+    CURRENCIES_COUNT
 };
 
 QString currencyToQString(Currency currency);
@@ -23,9 +23,9 @@ struct CurrencyPair{
 
 class CurrencyConverter{
 public:
-    CurrencyConverter(int numberOfCurrencies = Currency::NUMBER_OF_CURRENCIES);
+    CurrencyConverter(int numberOfCurrencies = Currency::CURRENCIES_COUNT);
     void calcExchangeRateMatrix(const std::vector<CurrencyPair> &currencyPairs);
-    double convert(double value, Currency fromCurrency, Currency toCurrency);
+    double convert(double value, Currency fromCurrency, Currency toCurrency) const;
 private:
     std::vector<std::vector<double>> m_exchangeRateMatrix;
 };
