@@ -6,20 +6,25 @@
 class Security
 {
 public:
+    Security(QString ISIN, QString name, int qty, double purchasePrice, Currency baseCurrency, double marketPrice);
     Security(QString ISIN, QString name, int qty, double purchasePrice, Currency baseCurrency);
 
     // getterek
-    QString getISIN();
-    QString getName();
-    int getQty();
-    double getAvgPurchasePrice();
-    Currency getBaseCurrency();
-    double getMarketPrice();
-    double getMarketValue();
-    double getUnrealizedPnL();
-    double getReturnPct();
+    QString getISIN() const;
+    QString getName() const;
+    int getQty() const;
+    double getAvgPurchasePrice() const;
+    Currency getBaseCurrency() const;
+    double getMarketPrice() const;
+    double getMarketValue() const;
+    double getUnrealizedPnL() const;
+    double getReturnPct() const;
 
-    double setMarketPrice();
+    // tovabbi metodusok
+    void updateMarketPrice(double newMarketPrice);
+    void sell(int qty, double sellPrice);
+    void reBuy(const Security &other);
+    QString toQString() const;
 
 
 private:

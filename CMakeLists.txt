@@ -26,6 +26,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         simplecsvparser.h simplecsvparser.cpp
         security.h security.cpp
         currency.h
+        currency.cpp
+
 
     )
 # Define target properties for Android with Qt 6 as:

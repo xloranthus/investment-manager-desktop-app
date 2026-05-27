@@ -1,28 +1,33 @@
 #ifndef CURRENCY_H
 #define CURRENCY_H
+
 #include <QString>
+#include <vector>
 
 enum Currency{
     HUF = 0,
     EUR,
-    USD
+    USD,
+    NUMBER_OF_CURRENCIES
 };
 
+QString currencyToQString(Currency currency);
 
-QString currencyToQString(Currency currency){
-    switch(currency){
-        case Currency::HUF: return "HUF";
-        case Currency::EUR: return "EUR";
-        case Currency::USD: return "USD";
-        default: return "Unknown currency";
-    }
-}
+Currency currencyFromQString(const QString &currency);
 
-QString currencyFromQString(const QString &currency){
-    if(currency == "HUF") return Currency::HUF;
-    if(currency == "EUR") return Currency::EUR;
-    if(currency == "USD") return Currency::USD;
-    throw std::invalid_argument("Unknown currency");
-}
+struct CurrencyPair{
+    CurrencyPair(QString name, double exchangeRate);
+    QString m_name;
+    double m_exchangeRate;
+};
+
+class CurrencyConverter{
+public:
+    CurrencyConverter(int numberOfCurrencies = Currency::NUMBER_OF_CURRENCIES);
+    void calcExchangeRateMatrix(const std::vector<CurrencyPair> &currencyPairs);
+    double convert(double value, Currency fromCurrency, Currency toCurrency);
+private:
+    std::vector<std::vector<double>> m_exchangeRateMatrix;
+};
 
 #endif // CURRENCY_H
