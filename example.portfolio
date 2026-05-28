@@ -1,0 +1,12 @@
+currencypair,EUR/HUF,355.00
+currencypair,USD/HUF,305.00
+currencypair,EUR/USD,1.15
+security,IE00B5BMR087,iShares Core S&P 500,3,630.63,USD,807.61
+security,IE00BMC38736,VanEck Semiconductor,54,36.56,EUR,93.47
+security,IE00B4L5Y983,iShares Core MSCI World,17,113.12,USD,142.88
+security,IE000YYE6WK5,VanEck Defense,42,47.35,EUR,55.06
+security,IE00BF0M2Z96,L&G Battery Value-Chain,80,15.38,EUR,34.04
+security,US67066G1040,NVIDIA Corp.,12,135.35,USD,212.45
+security,FR0013416716,Amundi Physical Gold,17,115.17,EUR,151.11
+security,HU0000061726,OTP Bank Nyrt,26,27430.00,HUF,40380.00
+security,HU0000073507,Magyar Telekom,390,1774.00,HUF,2618.00
