@@ -90,6 +90,7 @@ void MainWindow::on_action_Open_triggered()
     m_securities.clear();
     m_portfolioWidget->setRowCount(0);
     m_parser.readFile(m_filePath, m_currencyPairs, m_securities);
+    m_converter.calcExchangeRateMatrix(m_currencyPairs);
 
     for(const Security &security : m_securities){
         m_portfolioWidget->addSecurity(security, m_converter, m_displayCurrency);
@@ -229,5 +230,29 @@ void MainWindow::on_action_Market_Price_triggered()
         throw std::invalid_argument("ISIN not found");
 
     }
+}
+
+
+void MainWindow::on_action_Exchange_Rate_triggered()
+{
+
+    ExchangeRateUpdateDialog dlg(m_currencyPairs);
+    if(dlg.exec() == QDialog::Accepted){
+
+        QString chosenCurrencyPairName = dlg.getCurrencyPairName();
+        for(CurrencyPair &currencyPair : m_currencyPairs){
+            if(currencyPair.m_name == chosenCurrencyPairName){
+                currencyPair.m_exchangeRate = dlg.getNewExchangeRate();
+                m_converter.calcExchangeRateMatrix(m_currencyPairs);
+                for(const Security &security : m_securities){
+                    m_portfolioWidget->updateSecurity(security, m_converter, m_displayCurrency);
+                }
+                QMessageBox::information(this, "", "Exchange rate updated successfully");
+                return;
+            }
+        }
+        throw std::invalid_argument("Currency pair not found");
+    }
+
 }
 

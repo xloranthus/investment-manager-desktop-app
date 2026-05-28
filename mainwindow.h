@@ -5,6 +5,7 @@
 #include "simplecsvparser.h"
 #include "transactiondialog.h"
 #include "priceupdatedialog.h"
+#include "exchangerateupdatedialog.h"
 #include <QMainWindow>
 #include <QString>
 
@@ -38,6 +39,8 @@ private slots:
     void on_action_Sell_triggered();
 
     void on_action_Market_Price_triggered();
+
+    void on_action_Exchange_Rate_triggered();
 
 private:
     Ui::MainWindow *ui;
