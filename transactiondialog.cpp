@@ -4,6 +4,8 @@
 #include <QDialogButtonBox>
 #include <QString>
 #include <QPushButton>
+#include <QMessageBox>
+#include <QRegularExpressionValidator>
 #include "currency.h"
 
 using std::vector;
@@ -14,11 +16,25 @@ TransactionDialog::TransactionDialog(Transaction transaction, const vector<Secur
     , m_transaction(transaction)
     , m_securities(securities)
 {
+
     ui->setupUi(this);
+
+    if(m_securities.empty()){
+        ui->sellButton->setEnabled(false);
+        ui->rebuyButton->setEnabled(false);
+    }
 
     ui->dialogButtons->button(QDialogButtonBox::Ok)->setText("Transact");
 
-    connect(ui->dialogButtons, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    ui->priceField->setButtonSymbols(QAbstractSpinBox::NoButtons);
+
+    QRegularExpressionValidator *commaGuard = new QRegularExpressionValidator(
+        QRegularExpression("[^,]*"), this
+    );
+    ui->isinField->setValidator(commaGuard);
+    ui->nameField->setValidator(commaGuard);
+
+    connect(ui->dialogButtons, &QDialogButtonBox::accepted, this, &TransactionDialog::checkTransactionBeforeSubmit);
     connect(ui->dialogButtons, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
     ui->currencySelector->addItems({
@@ -59,6 +75,8 @@ TransactionDialog::~TransactionDialog()
 }
 
 
+// publikus getterek
+
 Transaction TransactionDialog::getTransaction(){
     return m_transaction;
 }
@@ -93,12 +111,13 @@ Currency TransactionDialog::getBaseCurrency(){
 
 
 // privat metodusok
-
 void TransactionDialog::changeForm(Transaction transaction){
 
     switch(transaction){
         case Transaction::BUY_NEW:
-            ui->rebuyButton->setEnabled(true);
+            if(!m_securities.empty()){
+                ui->rebuyButton->setEnabled(true);
+            }
 
             ui->isinSelector->setVisible(false);
             ui->isinField->setVisible(true);
@@ -115,6 +134,8 @@ void TransactionDialog::changeForm(Transaction transaction){
             ui->nameField->setEnabled(false);
             ui->currencySelector->setEnabled(false);
 
+            on_isinSelector_currentIndexChanged();
+
             return;
 
         case Transaction::SELL:
@@ -125,8 +146,26 @@ void TransactionDialog::changeForm(Transaction transaction){
             ui->nameField->setEnabled(false);
             ui->currencySelector->setEnabled(false);
 
+            on_isinSelector_currentIndexChanged();
+
             return;
     }
+}
+
+void TransactionDialog::checkTransactionBeforeSubmit(){
+
+    if(m_transaction == Transaction::BUY_NEW){
+        QString chosenISIN = ui->isinField->text();
+        for(const Security &security : m_securities){
+            if(security.getISIN() == chosenISIN){
+                QMessageBox::information(this, "", "If you wish to re-buy an already bought security, please check the \"Re-buy a security already in the portfolio\" checkbox");
+                return;
+            }
+        }
+    }
+    QDialog::accept();
+    return;
+
 }
 
 

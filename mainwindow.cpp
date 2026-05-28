@@ -151,6 +151,12 @@ void MainWindow::on_action_Sell_triggered()
 
 void MainWindow::initiateTransaction(Transaction transaction)
 {
+
+    if(m_securities.empty() && transaction != Transaction::BUY_NEW){
+        QMessageBox::information(this, "", QString("The portfolio is empty, there are no securities to %1").arg(transaction == Transaction::SELL ? "sell" : "re-buy"));
+        return;
+    }
+
     TransactionDialog dlg(transaction, m_securities, this);
     if(dlg.exec() == QDialog::Accepted){
 

@@ -49,6 +49,7 @@ private:
     std::vector<Security> m_securities;
 
     void changeForm(Transaction transaction);
+    void checkTransactionBeforeSubmit();
 };
 
 #endif // TRANSACTIONDIALOG_H
