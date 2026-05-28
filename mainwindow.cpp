@@ -68,6 +68,7 @@ void MainWindow::on_action_New_triggered()
     m_currencyPairs = m_defaultCurrencyPairs;
     m_securities.clear();
     m_portfolioWidget->setRowCount(0);
+    m_filePath = QString();
 }
 
 
@@ -98,7 +99,6 @@ void MainWindow::on_action_Open_triggered()
 
     QMessageBox::information(this, "", "Portfolio loaded successfully");
 }
-
 
 
 
