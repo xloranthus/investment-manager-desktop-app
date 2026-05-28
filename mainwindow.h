@@ -4,6 +4,7 @@
 #include "portfoliowidget.h"
 #include "simplecsvparser.h"
 #include "transactiondialog.h"
+#include "priceupdatedialog.h"
 #include <QMainWindow>
 #include <QString>
 
@@ -35,6 +36,8 @@ private slots:
     void on_action_Re_buy_Existing_triggered();
 
     void on_action_Sell_triggered();
+
+    void on_action_Market_Price_triggered();
 
 private:
     Ui::MainWindow *ui;

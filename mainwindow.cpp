@@ -206,3 +206,28 @@ void MainWindow::initiateTransaction(Transaction transaction)
     }
 }
 
+
+void MainWindow::on_action_Market_Price_triggered()
+{
+    if(m_securities.empty()){
+        QMessageBox::information(this, "", "The portfolio is empty, there are no securities to update");
+        return;
+    }
+
+    PriceUpdateDialog dlg(m_securities);
+    if(dlg.exec() == QDialog::Accepted){
+
+        QString ISIN = dlg.getISIN();
+        for(Security &security : m_securities){
+            if(security.getISIN() == ISIN){
+                security.updateMarketPrice(dlg.getNewMarketPrice());
+                m_portfolioWidget->updateSecurity(security, m_converter, m_displayCurrency);
+                QMessageBox::information(this, "", "Market price updated successfully");
+                return;
+            }
+        }
+        throw std::invalid_argument("ISIN not found");
+
+    }
+}
+
