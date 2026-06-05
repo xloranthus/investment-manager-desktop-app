@@ -124,6 +124,8 @@ void TransactionDialog::changeForm(Transaction transaction){
             ui->nameField->setEnabled(true);
             ui->currencySelector->setEnabled(true);
 
+            ui->qtyField->setMaximum(int(1e6));
+
             return;
 
         case Transaction::REBUY:
@@ -133,6 +135,8 @@ void TransactionDialog::changeForm(Transaction transaction){
             ui->isinField->setVisible(false);
             ui->nameField->setEnabled(false);
             ui->currencySelector->setEnabled(false);
+
+            ui->qtyField->setMaximum(int(1e6));
 
             on_isinSelector_currentIndexChanged();
 
@@ -146,6 +150,7 @@ void TransactionDialog::changeForm(Transaction transaction){
             ui->nameField->setEnabled(false);
             ui->currencySelector->setEnabled(false);
 
+            // qtyField maximum allowed value will change based on selected security
             on_isinSelector_currentIndexChanged();
 
             return;
@@ -199,6 +204,9 @@ void TransactionDialog::on_isinSelector_currentIndexChanged()
         if(security.getISIN() == ISIN){
             ui->nameField->setText(security.getName());
             ui->currencySelector->setCurrentText(currencyToQString(security.getBaseCurrency()));
+            if(m_transaction == Transaction::SELL){
+                ui->qtyField->setMaximum(security.getQty());
+            }
             return;
         }
     }
